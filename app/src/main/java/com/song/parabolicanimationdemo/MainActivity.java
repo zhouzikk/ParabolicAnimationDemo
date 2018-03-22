@@ -1,5 +1,6 @@
 package com.song.parabolicanimationdemo;
 
+import android.graphics.Point;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,16 +13,20 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     private static String TAG;
 
-    private float startX;
-    private float startY;
+    private int startX;
+    private int startY;
 
-    private float endX;
-    private float endY;
+    private int endX;
+    private int endY;
+
+    private int pointX;
+    private int pointY;
 
     private int endPosition[]=new int[2];
 
     private ConstraintLayout father;
     private ImageView ivEnd;
+    NXHooldeView nxHooldeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +38,15 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         ivEnd=findViewById(R.id.iv_end);
 
 
+
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        endX=ivEnd.getTop();
-        endY=ivEnd.getLeft();
 
+        endX=ivEnd.getLeft()+(ivEnd.getWidth()/2);
+        endY=ivEnd.getTop()+(ivEnd.getHeight()/2);
         Log.e(TAG,endX+"---"+endY);
 
     }
@@ -50,8 +56,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         if (motionEvent.getAction()==MotionEvent.ACTION_UP){
             Log.e(TAG,motionEvent.getX()+"--"+motionEvent.getY());
-            startX=motionEvent.getX();
-            startY=motionEvent.getY();
+            startX=(int)motionEvent.getX();
+            startY=(int)motionEvent.getY();
+            nxHooldeView=new NXHooldeView(this);
+            father.addView(nxHooldeView);
+            nxHooldeView.setStartPosition(new Point(startX,startY));
+            nxHooldeView.setEndPosition(new Point(endX,endY));
+            nxHooldeView.startBeizerAnimation();
         }
 
         return true;
