@@ -12,10 +12,8 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.TextView;
 
 /**
  * Created by Administrator on 2018/3/22.
@@ -47,12 +45,6 @@ public class NXHooldeView extends android.support.v7.widget.AppCompatTextView im
         mPaint4Circle = new Paint();
         mPaint4Circle.setColor(Color.RED);
         mPaint4Circle.setAntiAlias(true);
-
-
-//        setGravity(Gravity.CENTER);
-//        setText("1");
-//        setTextColor(Color.WHITE);
-//        setTextSize(12);
     }
 
 
